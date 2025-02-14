@@ -1,0 +1,17 @@
+// Size functions
+
+@function size($n) {
+  @return ($size-unit * $n);
+}
+
+// Color functions
+
+// Mix a color with white
+@function tint-color($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+// Mix a color with black
+@function shade-color($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}

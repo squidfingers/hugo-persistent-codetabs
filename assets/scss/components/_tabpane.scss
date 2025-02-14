@@ -1,0 +1,81 @@
+// See: /layouts/shortcodes/tabpane.html
+
+/*
+@markup
+<div class="tabpane">
+  <input type="radio" name="tabpane-00" id="tabpane-00-00" class="tabpane__input">
+  <label class="tabpane__label" for="tabpane-00-00">
+    Name
+  </label>
+  <div class="tabpane__panel">
+    Content
+  </div>
+</div>
+*/
+
+.tabpane {
+  display: flex;
+  flex-wrap: wrap;
+
+  .tabpane__input {
+    position: absolute;
+    opacity: 0;
+  }
+  .tabpane__title,
+  .tabpane__label {
+    position: relative;
+    z-index: 999;
+    flex-shrink: 1;
+    padding: size(1) size(2);
+    border-bottom: solid 2px transparent;
+  }
+  .tabpane__title {
+    color: rgba($foreground-color, 0.48);
+  }
+  .tabpane__label {
+    color: $link-color;
+    cursor: pointer;
+  }
+  .tabpane__panel {
+    order: 999;
+    display: none;
+    width: 100%;
+    border-top: solid 2px rgba($foreground-color, 0.16);
+    margin-top: -2px;
+    padding-top: size(3);
+  }
+  .tabpane__input:checked + .tabpane__label {
+    border-color: $link-color;
+    color: $foreground-color;
+    cursor: default;
+  }
+  .tabpane__input:checked + .tabpane__label + .tabpane__panel {
+    display: block;
+  }
+
+  // @options
+
+  &.tabpane--code {
+    background-color: $highlight-background-color;
+    border-radius: $border-radius;
+
+    .tabpane__title {
+      color: rgba($highlight-foreground-color, 0.64);
+    }
+    .tabpane__label {
+      color: tint-color($link-color, 20%);
+
+      &:first-of-type {
+        border-top-left-radius: $border-radius;
+      }
+    }
+    .tabpane__panel {
+      border-top: solid 2px rgba($highlight-foreground-color, 0.24);
+      padding-top: 0;
+    }
+    .tabpane__input:checked + .tabpane__label {
+      background-color: rgba($highlight-foreground-color, 0.24);
+      color: $highlight-foreground-color;
+    }
+  }
+}

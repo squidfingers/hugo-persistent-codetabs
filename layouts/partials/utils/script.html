@@ -1,0 +1,44 @@
+{{/*
+@example {{ partial "utils/script" (dict "src" "js/script.js") }}
+@example {{ partial "utils/script" (dict "src" (slice "js/script-1.js" "js/script-2.js") "dst" "js/scripts.js") }}
+*/}}
+
+{{ $src := .src }}
+{{ $dst := .dst }}
+{{ $js := "" }}
+{{ $result := "" }}
+
+{{ if reflect.IsSlice $src }}
+  {{/* Multiple scripts */}}
+  {{ if not $dst }}
+    {{ errorf "dst is required for %q" $src }}
+  {{ end }}
+  {{ $res := slice }}
+  {{ range $src }}
+    {{ with resources.Get . }}
+      {{ $res = $res | append . }}
+    {{ else }}
+      {{ errorf "Unable to include script %q" . }}
+    {{ end }}
+  {{ end }}
+  {{ if gt (len $res) 0 }}
+    {{ $js = $res | resources.Concat $dst }}
+  {{ end }}
+{{ else }}
+  {{/* Single script */}}
+  {{ $js = resources.Get $src }}
+{{ end }}
+
+{{ if $js }}
+  {{ if hugo.IsProduction }}
+    {{ $js = $js | minify | fingerprint }}
+  {{ end }}
+  {{ $result = printf "<script src=%q></script>" $js.RelPermalink }}
+{{ end }}
+
+{{/* Return result */}}
+{{ if ne $result "" }}
+  {{ return ($result | safeHTML) }}
+{{ else }}
+  {{ errorf "Unable to include script %q" $src }}
+{{ end }}

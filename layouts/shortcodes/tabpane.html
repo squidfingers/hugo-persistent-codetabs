@@ -1,0 +1,47 @@
+{{- $class := slice "tabpane" }}
+{{- /* Populate Scratch with tab content by rendering .Inner; print to a variable so whitespace isn't rendered */}}
+{{- $inner := .InnerDeindent }}
+{{- /* Get id */}}
+{{- $id := cond .IsNamedParams (.Get "id") (.Get 0) }}
+{{- $tabpaneId := cond (not $id) (printf "tabpane-%02v" .Ordinal) $id | anchorize }}
+{{- /* Get title */}}
+{{- $title := cond .IsNamedParams (.Get "title") (.Get 1) }}
+{{- /* Get code */}}
+{{- $code := cond .IsNamedParams (.Get "code") (.Get 2) }}
+{{- if or (eq $code "true") (eq $code "code") }}
+  {{- $class = $class | append "tabpane--code" }}
+{{- end }}
+{{- /* Determine default tab */}}
+{{- $checked := "" }}
+{{- $isFirst := true }}
+{{- range $k, $v := $.Scratch.Get "tabs" }}
+  {{- if $isFirst }}
+    {{- $checked = $k }}
+    {{- $isFirst = false }}
+  {{- end }}
+  {{- if eq (index $v "selected") true }}
+    {{- $checked = $k }}
+    {{- break }}
+  {{- end }}
+{{- end }}
+{{- /* Build class names */}}
+{{- $class = delimit $class " " }}
+{{- /* Output */}}
+<div class="{{ $class }}{{ if $id }}" id="{{ $tabpaneId }}{{ end }}">
+  {{- with $title }}
+    <div class="tabpane__title">
+      {{ . }}
+    </div>
+  {{- end }}
+  {{- range $k, $v := $.Scratch.Get "tabs" }}
+    {{- $label := index $v "label" }}
+    {{- $tabId :=  printf "%v-%v" $tabpaneId (cond (not $id) $k $label) | anchorize -}}
+    <input type="radio" name="{{ $tabpaneId }}" id="{{ $tabId }}" class="tabpane__input" tabindex="1"{{ if eq $k $checked }} checked="checked"{{ end }}>
+    <label class="tabpane__label" for="{{ $tabId }}">
+      {{ $label }}
+    </label>
+    <div class="tabpane__panel" tabindex="1">
+      {{ index $v "content" | markdownify }}
+    </div>
+  {{- end }}
+</div>

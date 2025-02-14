@@ -1,0 +1,47 @@
+html {
+  box-sizing: border-box;
+  font-family: $font-family-base;
+  line-height: $line-height-base;
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: size(3);
+  background-color: $background-color;
+  color: $foreground-color;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-normal;
+  line-height: $line-height-base;
+}
+
+pre {
+  margin: 0;
+  margin-bottom: size(3);
+  font-family: $font-family-mono;
+  font-size: 0.85rem;
+  // Prevent pre content from overflowing parent if it's a flex item
+  overflow-x: auto;
+  min-width: -webkit-fill-available;
+  min-width: -moz-available;
+  min-width: stretch;
+  max-width: 0;
+}
+
+code {
+  font-family: $font-family-mono;
+  font-size: 0.85rem;
+
+  // Code elements without a pre parent
+  &:not(pre code) {
+    padding: 1px 3px;
+    background-color: rgba($foreground-color, 0.8);
+    border-radius: $border-radius;
+  }
+}
