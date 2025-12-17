@@ -12,7 +12,7 @@
     {{ if not $dst }}
       {{ $dst = printf "%s/%s.css" (path.Dir $src) (path.BaseName $src) }}
     {{ end }}
-    {{ $css = . | toCSS (dict "transpiler" "libsass" "targetPath" $dst) }}
+    {{ $css = . | toCSS (dict "transpiler" "dartsass" "targetPath" $dst) }}
   {{ else }}
     {{ $css = . }}
   {{ end }}

@@ -1,3 +1,6 @@
+@use "../functions";
+@use "../variables";
+
 // See: /layouts/shortcodes/tabpane.html
 
 /*
@@ -26,27 +29,27 @@
     position: relative;
     z-index: 999;
     flex-shrink: 1;
-    padding: size(1) size(2);
+    padding: functions.size(1) functions.size(2);
     border-bottom: solid 2px transparent;
   }
   .tabpane__title {
-    color: rgba($foreground-color, 0.48);
+    color: rgba(variables.$foreground-color, 0.48);
   }
   .tabpane__label {
-    color: $link-color;
+    color: variables.$link-color;
     cursor: pointer;
   }
   .tabpane__panel {
     order: 999;
     display: none;
     width: 100%;
-    border-top: solid 2px rgba($foreground-color, 0.16);
+    border-top: solid 2px rgba(variables.$foreground-color, 0.16);
     margin-top: -2px;
-    padding-top: size(3);
+    padding-top: functions.size(3);
   }
   .tabpane__input:checked + .tabpane__label {
-    border-color: $link-color;
-    color: $foreground-color;
+    border-color: variables.$link-color;
+    color: variables.$foreground-color;
     cursor: default;
   }
   .tabpane__input:checked + .tabpane__label + .tabpane__panel {
@@ -56,26 +59,26 @@
   // @options
 
   &.tabpane--code {
-    background-color: $highlight-background-color;
-    border-radius: $border-radius;
+    background-color: variables.$highlight-background-color;
+    border-radius: variables.$border-radius;
 
     .tabpane__title {
-      color: rgba($highlight-foreground-color, 0.64);
+      color: rgba(variables.$highlight-foreground-color, 0.64);
     }
     .tabpane__label {
-      color: tint-color($link-color, 20%);
+      color: functions.tint-color(variables.$link-color, 20%);
 
       &:first-of-type {
-        border-top-left-radius: $border-radius;
+        border-top-left-radius: variables.$border-radius;
       }
     }
     .tabpane__panel {
-      border-top: solid 2px rgba($highlight-foreground-color, 0.24);
+      border-top: solid 2px rgba(variables.$highlight-foreground-color, 0.24);
       padding-top: 0;
     }
     .tabpane__input:checked + .tabpane__label {
-      background-color: rgba($highlight-foreground-color, 0.24);
-      color: $highlight-foreground-color;
+      background-color: rgba(variables.$highlight-foreground-color, 0.24);
+      color: variables.$highlight-foreground-color;
     }
   }
 }

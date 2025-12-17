@@ -1,7 +1,10 @@
+@use "functions";
+@use "variables";
+
 html {
   box-sizing: border-box;
-  font-family: $font-family-base;
-  line-height: $line-height-base;
+  font-family: variables.$font-family-base;
+  line-height: variables.$line-height-base;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -12,19 +15,19 @@ html {
 }
 
 body {
-  margin: size(3);
-  background-color: $background-color;
-  color: $foreground-color;
-  font-family: $font-family-base;
-  font-size: $font-size-base;
-  font-weight: $font-weight-normal;
-  line-height: $line-height-base;
+  margin: functions.size(3);
+  background-color: variables.$background-color;
+  color: variables.$foreground-color;
+  font-family: variables.$font-family-base;
+  font-size: variables.$font-size-base;
+  font-weight: variables.$font-weight-normal;
+  line-height: variables.$line-height-base;
 }
 
 pre {
   margin: 0;
-  margin-bottom: size(3);
-  font-family: $font-family-mono;
+  margin-bottom: functions.size(3);
+  font-family: variables.$font-family-mono;
   font-size: 0.85rem;
   // Prevent pre content from overflowing parent if it's a flex item
   overflow-x: auto;
@@ -35,13 +38,13 @@ pre {
 }
 
 code {
-  font-family: $font-family-mono;
+  font-family: variables.$font-family-mono;
   font-size: 0.85rem;
 
   // Code elements without a pre parent
   &:not(pre code) {
     padding: 1px 3px;
-    background-color: rgba($foreground-color, 0.8);
-    border-radius: $border-radius;
+    background-color: rgba(variables.$foreground-color, 0.8);
+    border-radius: variables.$border-radius;
   }
 }

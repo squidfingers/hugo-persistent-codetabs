@@ -1,3 +1,6 @@
+@use "../functions";
+@use "../variables";
+
 // Class added by Hugo's syntax highlighter
 // See: /assets/js/highlight-copy.js
 
@@ -22,13 +25,13 @@
 
   pre {
     margin-bottom: 0;
-    padding: size(2);
-    border-radius: $border-radius;
+    padding: functions.size(2);
+    border-radius: variables.$border-radius;
   }
   .highlight__copy {
     position: absolute;
-    right: size(0.5);
-    top: size(0.5);
+    right: functions.size(0.5);
+    top: functions.size(0.5);
     opacity: 0;
     transition: opacity .2s ease;
   }

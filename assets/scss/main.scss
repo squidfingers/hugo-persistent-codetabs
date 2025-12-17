@@ -1,14 +1,8 @@
-// Sass utility functions
-@import "functions";
-
-// Values for colors, fonts, spacing, etc
-@import "variables";
-
 // Global styling of html elements
-@import "base";
+@use "base";
 
 // Components
-@import "components/highlight";
-@import "components/icon-button";
-@import "components/icon";
-@import "components/tabpane";
+@use "components/highlight";
+@use "components/icon-button";
+@use "components/icon";
+@use "components/tabpane";

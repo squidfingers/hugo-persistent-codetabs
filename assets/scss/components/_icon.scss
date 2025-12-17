@@ -1,3 +1,6 @@
+@use "../functions";
+@use "../variables";
+
 /*
 @markup
 <img class="icon icon--primary icon--sm">
@@ -8,8 +11,8 @@ or
 .icon {
   display: inline-block;
   vertical-align: middle;
-  width: size(3);
-  height: size(3);
+  width: functions.size(3);
+  height: functions.size(3);
 
   // @options
   
@@ -20,56 +23,56 @@ or
   }
   &.icon--primary {
     path {
-      fill: $primary-color;
+      fill: variables.$primary-color;
     }
   }
   &.icon--secondary {
     path {
-      fill: $secondary-color;
+      fill: variables.$secondary-color;
     }
   }
   &.icon--info {
     path {
-      fill: $info-color;
+      fill: variables.$info-color;
     }
   }
   &.icon--success {
     path {
-      fill: $success-color;
+      fill: variables.$success-color;
     }
   }
   &.icon--warning {
     path {
-      fill: $warning-color;
+      fill: variables.$warning-color;
     }
   }
   &.icon--error {
     path {
-      fill: $error-color;
+      fill: variables.$error-color;
     }
   }
   &.icon--xxl {
-    width: size(8);
-    height: size(8);
+    width: functions.size(8);
+    height: functions.size(8);
   }
   &.icon--xl {
-    width: size(6);
-    height: size(6);
+    width: functions.size(6);
+    height: functions.size(6);
   }
   &.icon--lg {
-    width: size(4);
-    height: size(4);
+    width: functions.size(4);
+    height: functions.size(4);
   }
   &.icon--md {
-    width: size(3);
-    height: size(3);
+    width: functions.size(3);
+    height: functions.size(3);
   }
   &.icon--sm {
-    width: size(2.5);
-    height: size(2.5);
+    width: functions.size(2.5);
+    height: functions.size(2.5);
   }
   &.icon--xs {
-    width: size(2.25);
-    height: size(2.25);
+    width: functions.size(2.25);
+    height: functions.size(2.25);
   }
 }
